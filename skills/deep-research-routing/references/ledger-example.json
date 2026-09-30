@@ -1,0 +1,27 @@
+{
+  "schema_version": "0.2.0",
+  "target": "Example public software release history",
+  "observed_date": "2026-09-30",
+  "covered_categories": [],
+  "not_covered": [
+    {
+      "category": "official",
+      "reason": "Illustrative initial ledger; no retrieval has run."
+    }
+  ],
+  "branches": [
+    {
+      "branch_id": "release-docs",
+      "target_identifier": "Python 3.13.0",
+      "last_successful_identifier": null,
+      "question": "What does the official release page report?",
+      "source_category": "official",
+      "query_signatures": [],
+      "evidence": [],
+      "unsuccessful_searches": 0,
+      "next_pivot": "Inspect the supplied official release URL: https://www.python.org/downloads/release/python-3130/",
+      "status": "open",
+      "closure_reason": null
+    }
+  ]
+}

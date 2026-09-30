@@ -1,0 +1,4 @@
+interface:
+  display_name: "智慧工具路由"
+  short_description: "依任務、可用能力與授權範圍選擇工具，減少重複呼叫與錯誤操作"
+  default_prompt: "使用 $intelligent-tool-routing 為這個任務選擇可用工具，確認必要的下一步與完成條件。"

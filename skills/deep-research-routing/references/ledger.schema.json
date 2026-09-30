@@ -1,0 +1,321 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Intelligent Tool Router research ledger — 0.2.x core",
+  "description": "Validates observable ledger structure, not factual truth, source independence or state-transition history.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "target",
+    "observed_date",
+    "covered_categories",
+    "not_covered",
+    "branches"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "pattern": "^0\\.2\\.(0|[1-9][0-9]*)$",
+      "description": "Accept the frozen 0.2.x core. Add optional namespaced extensions only; core changes require a new minor version."
+    },
+    "target": {
+      "type": "string",
+      "minLength": 1
+    },
+    "observed_date": {
+      "type": "string",
+      "format": "date"
+    },
+    "covered_categories": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "uniqueItems": true
+    },
+    "not_covered": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "category",
+          "reason"
+        ],
+        "properties": {
+          "category": {
+            "type": "string",
+            "minLength": 1
+          },
+          "reason": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    },
+    "branches": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "branch_id",
+          "target_identifier",
+          "last_successful_identifier",
+          "question",
+          "source_category",
+          "query_signatures",
+          "evidence",
+          "unsuccessful_searches",
+          "next_pivot",
+          "status",
+          "closure_reason"
+        ],
+        "properties": {
+          "branch_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "target_identifier": {
+            "type": "string",
+            "minLength": 1
+          },
+          "last_successful_identifier": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "minLength": 1
+          },
+          "question": {
+            "type": "string",
+            "minLength": 1
+          },
+          "source_category": {
+            "type": "string",
+            "minLength": 1,
+            "enum": [
+              "official",
+              "gov",
+              "academic",
+              "repo",
+              "archive",
+              "community",
+              "secondary",
+              "index",
+              "dataset",
+              "api",
+              "directory",
+              "other"
+            ]
+          },
+          "query_signatures": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "uniqueItems": true
+          },
+          "evidence": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "url",
+                "source_category",
+                "evidence_grade",
+                "claim_type",
+                "claim",
+                "confidence",
+                "source_date"
+              ],
+              "properties": {
+                "url": {
+                  "type": "string",
+                  "format": "uri",
+                  "pattern": "^(https?|ftp)://"
+                },
+                "source_category": {
+                  "type": "string",
+                  "enum": [
+                    "official",
+                    "gov",
+                    "academic",
+                    "repo",
+                    "archive",
+                    "community",
+                    "secondary",
+                    "index",
+                    "dataset",
+                    "api",
+                    "directory",
+                    "other"
+                  ]
+                },
+                "evidence_grade": {
+                  "type": "string",
+                  "enum": [
+                    "A",
+                    "B",
+                    "C",
+                    "D"
+                  ]
+                },
+                "claim_type": {
+                  "type": "string",
+                  "enum": [
+                    "measured",
+                    "estimated",
+                    "reported",
+                    "inferred"
+                  ]
+                },
+                "claim": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "confidence": {
+                  "type": "string",
+                  "enum": [
+                    "high",
+                    "medium",
+                    "low"
+                  ]
+                },
+                "source_date": {
+                  "type": [
+                    "string",
+                    "null"
+                  ],
+                  "format": "date"
+                },
+                "independent_origin": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "extensions": {
+                  "$ref": "#/$defs/extensions"
+                }
+              }
+            }
+          },
+          "unsuccessful_searches": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "next_pivot": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "minLength": 1
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "open",
+              "closed"
+            ]
+          },
+          "closure_reason": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "enum": [
+              null,
+              "sufficient",
+              "exhausted",
+              "no-new-evidence",
+              "blocked",
+              "tool-failure",
+              "out-of-scope"
+            ]
+          },
+          "extensions": {
+            "$ref": "#/$defs/extensions"
+          }
+        },
+        "allOf": [
+          {
+            "if": {
+              "properties": {
+                "status": {
+                  "const": "closed"
+                }
+              },
+              "required": [
+                "status"
+              ]
+            },
+            "then": {
+              "properties": {
+                "closure_reason": {
+                  "type": "string"
+                },
+                "next_pivot": {
+                  "type": "null"
+                }
+              }
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "status": {
+                  "const": "open"
+                }
+              },
+              "required": [
+                "status"
+              ]
+            },
+            "then": {
+              "properties": {
+                "closure_reason": {
+                  "type": "null"
+                }
+              }
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "closure_reason": {
+                  "const": "no-new-evidence"
+                }
+              },
+              "required": [
+                "closure_reason"
+              ]
+            },
+            "then": {
+              "properties": {
+                "unsuccessful_searches": {
+                  "minimum": 3
+                }
+              }
+            }
+          }
+        ]
+      }
+    },
+    "extensions": {
+      "$ref": "#/$defs/extensions"
+    }
+  },
+  "$defs": {
+    "extensions": {
+      "type": "object",
+      "description": "Optional observable producer data. Preserve unknown namespaces; extensions cannot override core semantics. Contents are not domain-validated.",
+      "propertyNames": {
+        "pattern": "^([a-z][a-z0-9-]*\\.)+[a-z][a-z0-9-]*$"
+      },
+      "additionalProperties": true
+    }
+  }
+}

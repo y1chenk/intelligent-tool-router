@@ -1,0 +1,36 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "intelligent-tool-router",
+  "version": "0.2.1",
+  "description": "Capability-aware tool routing with scoped rollback, structured research provenance, and evidence-matched completion checks. Skills only; no new servers or API keys.",
+  "author": {
+    "name": "y1c"
+  },
+  "extensions": {
+    "com.openai": {
+      "interface": {
+        "displayName": "Intelligent Tool Router",
+        "shortDescription": "智慧選工具・深挖・驗證",
+        "longDescription": "依可用能力選工具；開發保留修改前狀態，只還原本次失敗變更；研究以 JSON Schema 記錄來源並回溯未嘗試線索；依實際證據回報完成狀態。包含四個按需載入的 Skill。指引型規則，未宣稱強制攔截或自動觸發可靠度。",
+        "developerName": "y1c",
+        "category": "Productivity",
+        "capabilities": [],
+        "defaultPrompt": [
+          "選擇最合適的可用工具處理這個任務，必要時再擴大搜尋。",
+          "deep dig 這個主題，追蹤識別碼、來源與證據。",
+          "先檢查問題，再用適合的工具診斷、修正與驗證。"
+        ]
+      }
+    }
+  },
+  "keywords": [
+    "tool-routing",
+    "research",
+    "debugging",
+    "verification",
+    "工具路由",
+    "深度研究",
+    "開發除錯",
+    "完成驗證"
+  ]
+}

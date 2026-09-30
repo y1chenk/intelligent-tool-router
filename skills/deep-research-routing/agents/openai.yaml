@@ -1,0 +1,4 @@
+interface:
+  display_name: "深度研究路由"
+  short_description: "追蹤研究來源、識別碼與分支，保留證據並沿有效線索繼續追查"
+  default_prompt: "使用 $deep-research-routing 深挖這個主題，追蹤來源、識別碼與研究分支，交付可驗證的結果。"

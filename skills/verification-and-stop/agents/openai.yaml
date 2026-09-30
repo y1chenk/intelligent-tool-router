@@ -1,0 +1,4 @@
+interface:
+  display_name: "驗證與停止"
+  short_description: "檢查完成宣稱與工具結果，區分已確認、未驗證及受阻的狀態"
+  default_prompt: "使用 $verification-and-stop 檢查這份結果的完成宣稱是否有證據，指出已確認、未驗證及受阻的部分。"
