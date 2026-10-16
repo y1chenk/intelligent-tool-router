@@ -2,13 +2,14 @@
 
 # 🧭 Intelligent Tool Router
 
-## 🔥 Is your AI still lying?
+## 🧭 Better tool choices. Traceable research. Verifiable outcomes.
 
-**Your AI says “Done.” Where is the evidence?**<br>
-*它說「完成了」——你看過證據嗎？*
+**Four Skills for tool routing, deep research, development, and completion checks.**<br>
+*選對工具、追查來源、驗證成果。*
 
 Add **Intelligent Tool Router** to your AI workflow and put tool choices, sources, and completion claims under scrutiny.
 
+[![License: MIT](https://img.shields.io/badge/license-MIT-22c55e?style=flat-square)](LICENSE)
 [![Version: v0.2.1](https://img.shields.io/badge/version-v0.2.1-7c3aed?style=flat-square)](plugin.json)
 [![Four skills](https://img.shields.io/badge/skills-4-0ea5e9?style=flat-square)](#skills)
 [![Skills-only design](https://img.shields.io/badge/design-skills%20only-14b8a6?style=flat-square)](#about)
@@ -16,7 +17,7 @@ Add **Intelligent Tool Router** to your AI workflow and put tool choices, source
 
 [繁體中文](README.md) · **English**
 
-[Quick start](#quick-start) · [Examples](#examples) · [Source & packaging](#packaging) · [Reference docs](#references)
+[Installation & quick start](#quick-start) · [Examples](#examples) · [Source & packaging](#packaging) · [Reference docs](#references)
 
 </div>
 
@@ -24,9 +25,9 @@ Add **Intelligent Tool Router** to your AI workflow and put tool choices, source
 
 <a name="about"></a>
 
-Your AI says it installed something, but only created a ZIP. It cites three sources, but all three repeat the same announcement. A tool fails, and it keeps trying the same path.
+When an AI can call multiple tools, the challenge is not just access: it also needs to choose suitable tools, trace sources, recover from failures, and check whether the intended outcome was reached.
 
-**Tired of these patterns? Try adding this set of tool-use instructions.**
+**Intelligent Tool Router provides four on-demand Skills to guide tool selection, evidence tracing, development workflows, and completion checks.**
 
 Intelligent Tool Router organizes tool selection, deep research, debugging, and completion verification into four skills loaded as needed, giving the model explicit inspection and recovery workflows.
 
@@ -74,13 +75,47 @@ Load the skills relevant to the task. Ordinary conversation and simple arithmeti
 
 <a name="quick-start"></a>
 
-## 🚀 Quick start
+## 🚀 Installation & quick start
 
-1. Use your client's supported import flow to add the plugin or the four complete skill folders under `skills/`, retaining their `agents/` and `references/` resources.
-2. In a chat that supports plugin mentions, select **@Intelligent Tool Router**, or invoke a corresponding skill directly.
-3. State your goal, constraints, and completion criteria, and ask the model to report results with evidence.
+> **This repository is still private.** Only authorized GitHub accounts can download its contents. An MIT license does **not** make the repository public. The steps below are for people who already have access, and installation depends on the AI client.
 
-If your host supports direct skill invocation, copy this template:
+### 1. Obtain the complete package
+
+Sign in to GitHub with a permitted account and use **Code → Download ZIP**, then extract it; or run:
+
+```sh
+git clone https://github.com/y1chenk/intelligent-tool-router.git
+cd intelligent-tool-router
+python3 scripts/build_package.py --check
+```
+
+`--check` performs read-only basic package and manifest-consistency checks. It **does not install the plugin or test AI behavior**. On Windows, use `python` or `py -3` if `python3` is unavailable.
+
+### 2. Choose an installation method
+
+**Option A — Install the complete Plugin (when supported by your client)**
+
+- From the repository root, run `python3 scripts/build_package.py --output ../intelligent-tool-router-0.2.1.zip`.
+- Follow your client's **actual** Plugin import, ZIP upload, or local Marketplace workflow. Uploading a ZIP as an ordinary chat attachment does not necessarily install a Plugin.
+- The package contains root `plugin.json`, the compatibility manifest, four complete `skills/` folders, and reference files. It does not provision MCP servers or API keys.
+
+**Option B — Install the four Skills manually (filesystem-based clients)**
+
+Copy **each of the four complete folders inside** `skills/` into your client's Skills directory. Keep their `SKILL.md`, `agents/`, and `references/` files together.
+
+| Client | Project-level target path | Notes |
+| --- | --- | --- |
+| Codex | `<project>/.agents/skills/<skill-name>/SKILL.md` | Place each of the four skill folders directly under `.agents/skills/`. |
+| Claude Code | `<project>/.claude/skills/<skill-name>/SKILL.md` | Personal installs can also use `~/.claude/skills/`. |
+| Other agents / ChatGPT | Use the import process supported by your client version | No universal local path or invocation syntax is assumed. |
+
+For example, replace `<skill-name>` with `intelligent-tool-routing`. Copying only its `SKILL.md` omits required reference resources. Consult the current [OpenAI Plugin documentation](https://developers.openai.com/plugins/build/plugins) and [Claude Skills documentation](https://platform.claude.com/docs/en/agents-and-tools/agent-skills/overview) for host-specific installation.
+
+### 3. Verify the installation and start
+
+1. Confirm that all four Skills, including `intelligent-tool-routing/SKILL.md`, and their reference files exist in the target location.
+2. Refresh or restart your client if required, and check that the Skills / Plugin appear in its listing.
+3. In a chat supporting Plugin mentions, use **@Intelligent Tool Router**. If your client supports `$skill-name` invocation, adapt this example; actual invocation syntax differs by client.
 
 ```text
 Use $intelligent-tool-routing for this task:
@@ -89,7 +124,7 @@ Constraints: [budget, scope, time, or items that must be preserved]
 Completion criteria: [required output, sources, or validation method]
 ```
 
-You can also select `$deep-research-routing`, `$development-routing`, or `$verification-and-stop` for the corresponding work.
+You can also choose `$deep-research-routing`, `$development-routing`, or `$verification-and-stop`. **Discovery does not prove reliable adherence; verify behavior on concrete tasks with checkable results.**
 
 <a name="examples"></a>
 
@@ -199,7 +234,7 @@ Choose a task you know well and run it in fresh chats with and without the Route
 <details>
 <summary>📝 Version, effectiveness, and licensing</summary>
 
-The package is **v0.2.1**. Skills guide model behavior; they are not enforcement middleware and do not guarantee the elimination of errors or hallucinations. Automatic triggering, adherence, and performance gains require real task evaluations. Packaging checks do not establish model reliability or replace complete manifest or JSON Schema validation. A public open-source license has not been assigned and will be determined before public release.
+The package is **v0.2.1**. Skills guide model behavior; they are not enforcement middleware and do not guarantee the elimination of errors or hallucinations. Automatic triggering, adherence, and performance gains require real task evaluations. Packaging checks do not establish model reliability or replace complete manifest or JSON Schema validation. This project uses the [MIT License](LICENSE). Its GitHub repository remains private; the license does not change access permissions.
 
 </details>
 
