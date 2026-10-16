@@ -27,9 +27,7 @@
 
 當 AI 能呼叫多種工具時，難點不只是「有沒有工具」，還包括如何選擇、追查來源、處理失敗，以及確認結果是否真的達成目標。
 
-**Intelligent Tool Router 提供四個可按需載入的 Skills，協助模型依任務選工具、追查證據、處理開發問題並檢查完成狀態。**
-
-Intelligent Tool Router 把選工具、深度研究、開發除錯與完成驗證整理成四個按需載入的 Skills，為模型提供明確的檢查與恢復流程。
+**Intelligent Tool Router 將工具路由、深度研究、開發除錯與結果驗證整理成四個按需載入的 Skills**，為模型提供明確的檢查、復原與停止條件。
 
 > 💡 少一點「相信我」，多一點「這是證據」。
 
@@ -77,11 +75,11 @@ flowchart TD
 
 ## 🚀 安裝與快速開始
 
-> **目前儲存庫仍為 Private。** 只有獲授權的 GitHub 帳號可以取得原始碼；加入 MIT 授權不會將它自動公開。以下流程適用於已取得套件的人，且安裝功能依 AI 用戶端而異。
+可直接取得完整原始碼，依 AI 用戶端選擇**安裝整套 Plugin**，或**手動安裝四個 Skills**。本專案不需要另外部署 MCP 伺服器或申請 API 金鑰；可用工具與帳號權限由你的使用環境決定。
 
-### 1. 取得完整套件
+### 1. 下載原始碼
 
-以有權存取此儲存庫的帳號登入 GitHub，再透過 **Code → Download ZIP** 下載並解壓，或使用：
+在 [GitHub 專案頁面](https://github.com/y1chenk/intelligent-tool-router) 選擇 **Code → Download ZIP** 並解壓，或使用 Git：
 
 ```sh
 git clone https://github.com/y1chenk/intelligent-tool-router.git
@@ -101,7 +99,7 @@ python3 scripts/build_package.py --check
 
 **方式 B — 手動安裝四個 Skills（支援檔案型 Skills 的環境）**
 
-把 `skills/` **下面的四個完整資料夾**複製到目標 Skills 目錄，保留各資料夾中的 `SKILL.md`、`agents/` 與 `references/`。
+把 `skills/` **下面的四個完整資料夾**複製到目標 Skills 目錄，保留 `SKILL.md` 與附帶的 `agents/`、`references/` 等資源（如有）。
 
 | 用戶端 | 專案層級的放置位置 | 備註 |
 | --- | --- | --- |
@@ -109,7 +107,7 @@ python3 scripts/build_package.py --check
 | Claude Code | `<專案>/.claude/skills/<skill-name>/SKILL.md` | 也可使用個人目錄 `~/.claude/skills/`。 |
 | 其他 Agent / ChatGPT | 依目前版本提供的 Skill／Plugin 匯入方式 | 不保證有相同的本機目錄或直接呼叫語法。 |
 
-例如 `<skill-name>` 可替換成 `intelligent-tool-routing`；請勿只複製單一 `SKILL.md` 而漏掉其參考檔。各平台的最新安裝方式請參考 [OpenAI Plugin 文件](https://developers.openai.com/plugins/build/plugins) 與 [Claude Skills 文件](https://platform.claude.com/docs/en/agents-and-tools/agent-skills/overview)。
+例如 `<skill-name>` 可替換成 `intelligent-tool-routing`；請勿只複製單一 `SKILL.md` 而漏掉其參考檔。在 Claude Code 可透過 `/intelligent-tool-routing` 呼叫已載入的 Skill；Codex 等用戶端的呼叫方式可能不同。詳見 [OpenAI Plugin 文件](https://developers.openai.com/plugins/build/plugins) 與 [Claude Skills 文件](https://platform.claude.com/docs/en/agents-and-tools/agent-skills/overview)。
 
 ### 3. 驗證安裝並開始使用
 
@@ -234,7 +232,7 @@ python3 scripts/build_package.py --output ../intelligent-tool-router-0.2.1.zip
 <details>
 <summary>📝 版本、效果與授權說明</summary>
 
-目前套件版本為 **v0.2.1**。Skills 提供模型行為指引，不是強制攔截器，也不保證消除錯誤或幻覺。自動觸發、遵循率與效能改善需要實際任務評測；封裝檢查不等同模型可靠性測試，也不代替完整 manifest 或 JSON Schema 驗證。本專案採用 [MIT License](LICENSE)；目前儲存庫仍為私人模式，授權不會自動變更存取權限。
+目前套件版本為 **v0.2.1**。Skills 提供模型行為指引，不是強制攔截器，也不保證消除錯誤或幻覺。自動觸發、遵循率與效能改善需要實際任務評測；封裝檢查不等同模型可靠性測試，也不代替完整 manifest 或 JSON Schema 驗證。本專案採用 [MIT License](LICENSE)。使用、修改與再散布時，請遵守授權中的著作權及授權聲明保留要求。
 
 </details>
 
