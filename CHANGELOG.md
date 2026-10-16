@@ -2,6 +2,8 @@
 
 ## Unreleased — 文件更新 / Documentation
 
+- 修正雙語 README 定位：以工具選擇與按需工作流程介紹四個 Skills，移除「AI 說謊」與「Done／證據」主標，並將指引與執行權限的界線提前說明。
+  Correct both README introductions to describe tool selection and on-demand workflows; remove the lying/Done headline and clarify the boundary between instructions and execution permissions near the top.
 - 將雙語首頁改為面向新使用者的介紹，加入問題導向開場、功能情境與實際評測邀請；開發者步驟改為折疊顯示。
   Rework both homepages with a stronger opening, practical use cases, and an evaluation invitation; collapse developer instructions.
 - 重新設計 GitHub 首頁，加入雙語導覽、徽章、流程圖與可複製範例。

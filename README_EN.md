@@ -2,12 +2,12 @@
 
 # 🧭 Intelligent Tool Router
 
-## 🔥 Is your AI still lying?
+## 🧭 Choose tools for the task. Load workflows as needed.
 
-**Your AI says “Done.” Where is the evidence?**<br>
-*它說「完成了」——你看過證據嗎？*
+**Tool selection · Deep research · Debugging · Completion checks**<br>
+*工具選擇・深度研究・開發除錯・完成驗證*
 
-Add **Intelligent Tool Router** to your AI workflow and put tool choices, sources, and completion claims under scrutiny.
+**Intelligent Tool Router** provides four skills loaded as needed to guide the model in choosing tools and follow-up workflows based on the task, available capabilities, and existing evidence.
 
 [![Version: v0.2.1](https://img.shields.io/badge/version-v0.2.1-7c3aed?style=flat-square)](plugin.json)
 [![Four skills](https://img.shields.io/badge/skills-4-0ea5e9?style=flat-square)](#skills)
@@ -24,22 +24,22 @@ Add **Intelligent Tool Router** to your AI workflow and put tool choices, source
 
 <a name="about"></a>
 
-Your AI says it installed something, but only created a ZIP. It cites three sources, but all three repeat the same announcement. A tool fails, and it keeps trying the same path.
+Different tasks need different tools and sources: research calls for source tracing, development calls for code and log inspection, and actions call for checking the actual result.
 
-**Tired of these patterns? Try adding this set of tool-use instructions.**
+**Establish the task and available capabilities, then choose tools and workflows.**
 
 Intelligent Tool Router organizes tool selection, deep research, debugging, and completion verification into four skills loaded as needed, giving the model explicit inspection and recovery workflows.
 
-> 💡 Less “trust me.” More “here is the evidence.”
+> 💡 Skills are instructions for the model to follow. The host provides tool access and permissions; this plugin does not automatically intercept or enforce tool execution.
 
-## ⚡ Which AI habit do you want to improve?
+## ⚡ How do these skills guide tool use?
 
-| Common pattern | What these skills ask the model to do |
+| Task need | What these skills guide the model to do |
 | --- | --- |
-| 🗣️ Saying “Done” before the work is complete. | Inspect actual state; distinguish created, saved, deployed, and operationally verified outcomes. |
-| 🔁 Repeating failed tool calls. | Correct parameters, retry within bounds, or change paths; inspect uncertain writes before retrying. |
-| 🔎 Searching widely without credible sources. | Trace original sources, versions, and dates; deduplicate copied reporting and explain evidence gaps. |
-| 🛠️ Fixing one bug while disrupting your other edits. | Inspect existing code, preserve unrelated edits, and restore only the failed attempt when safe. |
+| 🧭 Select tools and recover from failures. | Match tools to the task and available capabilities; correct errors, retry within bounds, or change paths, inspecting uncertain writes before retrying. |
+| 🔎 Research and trace sources. | Trace original sources, versions, and dates; deduplicate copied reporting and explain evidence gaps. |
+| 🛠️ Diagnose and repair code. | Inspect existing code, preserve unrelated edits, and restore only the failed attempt when safe. |
+| ✅ Check results and decide whether to continue. | Inspect actual state; distinguish created, saved, deployed, and operationally verified outcomes, and identify necessary remaining work. |
 
 These are workflow design goals. Test their effects on your own tasks.
 
@@ -192,7 +192,7 @@ Root `plugin.json` owns shared metadata; `.codex-plugin/plugin.json` preserves c
 
 Use [Issues](https://github.com/y1chenk/intelligent-tool-router/issues) to share real cases: the goal, available tools, expected and observed results, and reproduction steps. Incorrect tool selection, unnecessary repeated calls, and unsupported completion claims are useful improvement targets.
 
-## 🧪 Bring a real task and challenge it
+## 🧪 Evaluate the workflows on real tasks
 
 Choose a task you know well and run it in fresh chats with and without the Router. Compare correctness, verifiable sources, evidence for completion claims, tool calls, and elapsed time. Share failures so the next improvement has something concrete to address.
 
