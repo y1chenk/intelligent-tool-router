@@ -2,13 +2,14 @@
 
 # 🧭 Intelligent Tool Router
 
-## 🔥 你的 AI 還在說謊嗎？
+## 🧭 讓 AI 選對工具，查清來源，驗證結果
 
-**它說「完成了」——你看過證據嗎？**<br>
-*Your AI says “Done.” Where is the evidence?*
+**四個 Skills：工具路由、深度研究、開發除錯、完成驗證。**<br>
+*Route tools. Trace sources. Verify outcomes.*
 
 把 **Intelligent Tool Router** 加進你的 AI 工作流程，讓選工具、查來源和完成宣稱接受檢查。
 
+[![License: MIT](https://img.shields.io/badge/license-MIT-22c55e?style=flat-square)](LICENSE)
 [![Version: v0.2.1](https://img.shields.io/badge/version-v0.2.1-7c3aed?style=flat-square)](plugin.json)
 [![Four skills](https://img.shields.io/badge/skills-4-0ea5e9?style=flat-square)](#skills)
 [![Skills-only design](https://img.shields.io/badge/design-skills%20only-14b8a6?style=flat-square)](#about)
@@ -16,7 +17,7 @@
 
 **繁體中文** · [English](README_EN.md)
 
-[快速開始](#quick-start) · [使用範例](#examples) · [取得與建構](#packaging) · [深入文件](#references)
+[安裝與快速開始](#quick-start) · [使用範例](#examples) · [取得與建構](#packaging) · [深入文件](#references)
 
 </div>
 
@@ -24,9 +25,9 @@
 
 <a name="about"></a>
 
-AI 說已經安裝，結果只是產生 ZIP。說找到三個來源，結果三篇都轉載同一則消息。工具報錯之後，還是反覆嘗試同一條路。
+當 AI 能呼叫多種工具時，難點不只是「有沒有工具」，還包括如何選擇、追查來源、處理失敗，以及確認結果是否真的達成目標。
 
-**如果你也厭倦這些狀況，試試加入這套工具使用指引。**
+**Intelligent Tool Router 提供四個可按需載入的 Skills，協助模型依任務選工具、追查證據、處理開發問題並檢查完成狀態。**
 
 Intelligent Tool Router 把選工具、深度研究、開發除錯與完成驗證整理成四個按需載入的 Skills，為模型提供明確的檢查與恢復流程。
 
@@ -74,13 +75,47 @@ flowchart TD
 
 <a name="quick-start"></a>
 
-## 🚀 快速開始
+## 🚀 安裝與快速開始
 
-1. 依你的 AI 用戶端支援的流程，匯入此外掛或 `skills/` 下的四個完整 Skill 資料夾，保留其 `agents/` 與 `references/`。
-2. 在支援外掛提及的聊天中，選擇 **@Intelligent Tool Router**；也可直接呼叫對應 Skill。
-3. 交代目標、限制與完成標準，要求模型用證據回報結果。
+> **目前儲存庫仍為 Private。** 只有獲授權的 GitHub 帳號可以取得原始碼；加入 MIT 授權不會將它自動公開。以下流程適用於已取得套件的人，且安裝功能依 AI 用戶端而異。
 
-在支援直接呼叫 Skills 的環境中，可複製以下範本：
+### 1. 取得完整套件
+
+以有權存取此儲存庫的帳號登入 GitHub，再透過 **Code → Download ZIP** 下載並解壓，或使用：
+
+```sh
+git clone https://github.com/y1chenk/intelligent-tool-router.git
+cd intelligent-tool-router
+python3 scripts/build_package.py --check
+```
+
+`--check` 是唯讀的基本套件與 manifest 一致性檢查，**不是安裝，也不是 AI 行為評測**。在 Windows 上可將 `python3` 改成 `python` 或 `py -3`。
+
+### 2. 選擇安裝方式
+
+**方式 A — 匯入完整 Plugin（用戶端有支援時）**
+
+- 在儲存庫根目錄執行 `python3 scripts/build_package.py --output ../intelligent-tool-router-0.2.1.zip`。
+- 使用用戶端**實際提供**的 Plugin 匯入、ZIP 上傳或本機 Marketplace 安裝流程加入套件；不是每個聊天介面都支援直接上傳 ZIP 來安裝 Plugin。
+- 完整套件包含根目錄 `plugin.json`、相容 manifest、四個 `skills/` 資料夾及參考檔案；不會自動建立 MCP 伺服器或 API 金鑰。
+
+**方式 B — 手動安裝四個 Skills（支援檔案型 Skills 的環境）**
+
+把 `skills/` **下面的四個完整資料夾**複製到目標 Skills 目錄，保留各資料夾中的 `SKILL.md`、`agents/` 與 `references/`。
+
+| 用戶端 | 專案層級的放置位置 | 備註 |
+| --- | --- | --- |
+| Codex | `<專案>/.agents/skills/<skill-name>/SKILL.md` | 將四個 Skill 直接放在 `.agents/skills/` 下。 |
+| Claude Code | `<專案>/.claude/skills/<skill-name>/SKILL.md` | 也可使用個人目錄 `~/.claude/skills/`。 |
+| 其他 Agent / ChatGPT | 依目前版本提供的 Skill／Plugin 匯入方式 | 不保證有相同的本機目錄或直接呼叫語法。 |
+
+例如 `<skill-name>` 可替換成 `intelligent-tool-routing`；請勿只複製單一 `SKILL.md` 而漏掉其參考檔。各平台的最新安裝方式請參考 [OpenAI Plugin 文件](https://developers.openai.com/plugins/build/plugins) 與 [Claude Skills 文件](https://platform.claude.com/docs/en/agents-and-tools/agent-skills/overview)。
+
+### 3. 驗證安裝並開始使用
+
+1. 確認目標目錄存在 `intelligent-tool-routing/SKILL.md` 等四個 Skill，並確認其參考檔案齊全。
+2. 重新整理或重新開啟用戶端（如果該用戶端要求），確認 Skills / Plugin 列表可以找到它們。
+3. 在支援 Plugin 提及的聊天中使用 **@Intelligent Tool Router**；在支援 `$skill-name` 呼叫的環境中，可使用以下範本。實際名稱與觸發語法依用戶端而定。
 
 ```text
 使用 $intelligent-tool-routing 處理以下任務：
@@ -89,7 +124,7 @@ flowchart TD
 完成標準：【需要的成果、來源或驗證方法】
 ```
 
-也可直接選擇 `$deep-research-routing`、`$development-routing` 或 `$verification-and-stop`，處理對應的工作。
+也可以選用 `$deep-research-routing`、`$development-routing`、`$verification-and-stop`。**能看見 Skill，不代表模型已可靠遵循；請用具體任務和可核對的輸出測試。**
 
 <a name="examples"></a>
 
@@ -199,7 +234,7 @@ python3 scripts/build_package.py --output ../intelligent-tool-router-0.2.1.zip
 <details>
 <summary>📝 版本、效果與授權說明</summary>
 
-目前套件版本為 **v0.2.1**。Skills 提供模型行為指引，不是強制攔截器，也不保證消除錯誤或幻覺。自動觸發、遵循率與效能改善需要實際任務評測；封裝檢查不等同模型可靠性測試，也不代替完整 manifest 或 JSON Schema 驗證。公開開源授權尚未指定，會在正式公開前確定。
+目前套件版本為 **v0.2.1**。Skills 提供模型行為指引，不是強制攔截器，也不保證消除錯誤或幻覺。自動觸發、遵循率與效能改善需要實際任務評測；封裝檢查不等同模型可靠性測試，也不代替完整 manifest 或 JSON Schema 驗證。本專案採用 [MIT License](LICENSE)；目前儲存庫仍為私人模式，授權不會自動變更存取權限。
 
 </details>
 
