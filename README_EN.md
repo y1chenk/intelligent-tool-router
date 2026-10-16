@@ -27,9 +27,7 @@ Add **Intelligent Tool Router** to your AI workflow and put tool choices, source
 
 When an AI can call multiple tools, the challenge is not just access: it also needs to choose suitable tools, trace sources, recover from failures, and check whether the intended outcome was reached.
 
-**Intelligent Tool Router provides four on-demand Skills to guide tool selection, evidence tracing, development workflows, and completion checks.**
-
-Intelligent Tool Router organizes tool selection, deep research, debugging, and completion verification into four skills loaded as needed, giving the model explicit inspection and recovery workflows.
+**Intelligent Tool Router packages tool routing, deep research, development, and outcome verification into four on-demand Skills** with explicit inspection, recovery, and stopping guidance.
 
 > 💡 Less “trust me.” More “here is the evidence.”
 
@@ -77,11 +75,11 @@ Load the skills relevant to the task. Ordinary conversation and simple arithmeti
 
 ## 🚀 Installation & quick start
 
-> **This repository is still private.** Only authorized GitHub accounts can download its contents. An MIT license does **not** make the repository public. The steps below are for people who already have access, and installation depends on the AI client.
+Get the complete source and choose either **the full Plugin** (if your client supports it) or **the four standalone Skills**. No additional MCP server deployment or API keys are required by this project; tools and account permissions come from your host environment.
 
-### 1. Obtain the complete package
+### 1. Download the source
 
-Sign in to GitHub with a permitted account and use **Code → Download ZIP**, then extract it; or run:
+Choose **Code → Download ZIP** from the [GitHub repository](https://github.com/y1chenk/intelligent-tool-router) and extract the archive, or clone it with Git:
 
 ```sh
 git clone https://github.com/y1chenk/intelligent-tool-router.git
@@ -101,7 +99,7 @@ python3 scripts/build_package.py --check
 
 **Option B — Install the four Skills manually (filesystem-based clients)**
 
-Copy **each of the four complete folders inside** `skills/` into your client's Skills directory. Keep their `SKILL.md`, `agents/`, and `references/` files together.
+Copy **each of the four complete folders inside** `skills/` into your client's Skills directory. Preserve `SKILL.md` and any included `agents/`, `references/`, or other resources.
 
 | Client | Project-level target path | Notes |
 | --- | --- | --- |
@@ -109,7 +107,7 @@ Copy **each of the four complete folders inside** `skills/` into your client's S
 | Claude Code | `<project>/.claude/skills/<skill-name>/SKILL.md` | Personal installs can also use `~/.claude/skills/`. |
 | Other agents / ChatGPT | Use the import process supported by your client version | No universal local path or invocation syntax is assumed. |
 
-For example, replace `<skill-name>` with `intelligent-tool-routing`. Copying only its `SKILL.md` omits required reference resources. Consult the current [OpenAI Plugin documentation](https://developers.openai.com/plugins/build/plugins) and [Claude Skills documentation](https://platform.claude.com/docs/en/agents-and-tools/agent-skills/overview) for host-specific installation.
+For example, replace `<skill-name>` with `intelligent-tool-routing`. Copying only `SKILL.md` omits supporting resources. In Claude Code, you can invoke a loaded skill with `/intelligent-tool-routing`; other clients may use different syntax. See the [OpenAI Plugin documentation](https://developers.openai.com/plugins/build/plugins) and [Claude Skills documentation](https://platform.claude.com/docs/en/agents-and-tools/agent-skills/overview) for host-specific guidance.
 
 ### 3. Verify the installation and start
 
@@ -234,7 +232,7 @@ Choose a task you know well and run it in fresh chats with and without the Route
 <details>
 <summary>📝 Version, effectiveness, and licensing</summary>
 
-The package is **v0.2.1**. Skills guide model behavior; they are not enforcement middleware and do not guarantee the elimination of errors or hallucinations. Automatic triggering, adherence, and performance gains require real task evaluations. Packaging checks do not establish model reliability or replace complete manifest or JSON Schema validation. This project uses the [MIT License](LICENSE). Its GitHub repository remains private; the license does not change access permissions.
+The package is **v0.2.1**. Skills guide model behavior; they are not enforcement middleware and do not guarantee the elimination of errors or hallucinations. Automatic triggering, adherence, and performance gains require real task evaluations. Packaging checks do not establish model reliability or replace complete manifest or JSON Schema validation. This project is licensed under the [MIT License](LICENSE). Keep the copyright and permission notice in copies or substantial portions of the software.
 
 </details>
 
