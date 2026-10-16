@@ -1,15 +1,15 @@
 {
   "interface": {
     "displayName": "Intelligent Tool Router",
-    "shortDescription": "\u667a\u6167\u9078\u5de5\u5177\u30fb\u6df1\u6316\u30fb\u9a57\u8b49",
-    "longDescription": "\u4f9d\u53ef\u7528\u80fd\u529b\u9078\u5de5\u5177\uff1b\u958b\u767c\u4fdd\u7559\u4fee\u6539\u524d\u72c0\u614b\uff0c\u53ea\u9084\u539f\u672c\u6b21\u5931\u6557\u8b8a\u66f4\uff1b\u7814\u7a76\u4ee5 JSON Schema \u8a18\u9304\u4f86\u6e90\u4e26\u56de\u6eaf\u672a\u5617\u8a66\u7dda\u7d22\uff1b\u4f9d\u5be6\u969b\u8b49\u64da\u56de\u5831\u5b8c\u6210\u72c0\u614b\u3002\u5305\u542b\u56db\u500b\u6309\u9700\u8f09\u5165\u7684 Skill\u3002\u6307\u5f15\u578b\u898f\u5247\uff0c\u672a\u5ba3\u7a31\u5f37\u5236\u6514\u622a\u6216\u81ea\u52d5\u89f8\u767c\u53ef\u9760\u5ea6\u3002",
+    "shortDescription": "智慧選工具・深挖・驗證",
+    "longDescription": "依可用能力選工具；開發保留修改前狀態，只還原本次失敗變更；研究以 JSON Schema 記錄來源並回溯未嘗試線索；依實際證據回報完成狀態。包含四個按需載入的 Skill。指引型規則，未宣稱強制攔截或自動觸發可靠度。",
     "developerName": "y1c",
     "category": "Productivity",
     "capabilities": [],
     "defaultPrompt": [
-      "\u9078\u64c7\u6700\u5408\u9069\u7684\u53ef\u7528\u5de5\u5177\u8655\u7406\u9019\u500b\u4efb\u52d9\uff0c\u5fc5\u8981\u6642\u518d\u64f4\u5927\u641c\u5c0b\u3002",
-      "deep dig \u9019\u500b\u4e3b\u984c\uff0c\u8ffd\u8e64\u8b58\u5225\u78bc\u3001\u4f86\u6e90\u8207\u8b49\u64da\u3002",
-      "\u5148\u6aa2\u67e5\u554f\u984c\uff0c\u518d\u7528\u9069\u5408\u7684\u5de5\u5177\u8a3a\u65b7\u3001\u4fee\u6b63\u8207\u9a57\u8b49\u3002"
+      "選擇最合適的可用工具處理這個任務，必要時再擴大搜尋。",
+      "deep dig 這個主題，追蹤識別碼、來源與證據。",
+      "先檢查問題，再用適合的工具診斷、修正與驗證。"
     ]
   },
   "name": "intelligent-tool-router",
@@ -23,10 +23,11 @@
     "research",
     "debugging",
     "verification",
-    "\u5de5\u5177\u8def\u7531",
-    "\u6df1\u5ea6\u7814\u7a76",
-    "\u958b\u767c\u9664\u932f",
-    "\u5b8c\u6210\u9a57\u8b49"
+    "工具路由",
+    "深度研究",
+    "開發除錯",
+    "完成驗證"
   ],
-  "skills": "./skills"
+  "skills": "./skills",
+  "license": "MIT"
 }
