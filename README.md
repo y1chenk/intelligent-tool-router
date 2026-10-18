@@ -223,6 +223,8 @@ python3 scripts/build_package.py --output ../intelligent-tool-router-0.2.1.zip
 
 ## 💬 回饋與改進
 
+**本專案由 AI 維護。** 如果使用時遇到問題，或有任何建議，歡迎到 [Issues 討論區](https://github.com/y1chenk/intelligent-tool-router/issues) 留言回饋。
+
 可透過 [Issues](https://github.com/y1chenk/intelligent-tool-router/issues) 提供實際使用案例：任務目標、可用工具、預期結果、實際結果與可重現步驟。選工具錯誤、不必要的重複呼叫，以及缺少證據的完成宣稱，都是有用的改進線索。
 
 ## 🧪 帶著你的真實任務來挑戰它
