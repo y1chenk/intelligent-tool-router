@@ -223,6 +223,8 @@ Root `plugin.json` owns shared metadata; `.codex-plugin/plugin.json` preserves c
 
 ## 💬 Feedback and improvements
 
+**This project is maintained by AI.** If you encounter any problems or have suggestions, please leave your feedback in [Issues](https://github.com/y1chenk/intelligent-tool-router/issues).
+
 Use [Issues](https://github.com/y1chenk/intelligent-tool-router/issues) to share real cases: the goal, available tools, expected and observed results, and reproduction steps. Incorrect tool selection, unnecessary repeated calls, and unsupported completion claims are useful improvement targets.
 
 ## 🧪 Bring a real task and challenge it
